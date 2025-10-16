@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, sans-serif;
+    touch-action: none;
+}
+#container {
+    width: 100vw;
+    height: 100vh;
+}
+#controls {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 300px;
+    z-index: 100;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    transition: all 0.3s ease;
+}
+
+#controls.minimized {
+    padding: 10px;
+    max-height: none;
+    overflow: visible;
+}
+
+#controls.minimized #controlContent {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #controls {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        max-width: none;
+        padding: 10px;
+        max-height: calc(75vh - 120px);
+    }
+}
+h3 {
+    margin-top: 0;
+    color: #4a9eff;
+}
+.control-group {
+    margin: 10px 0;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+}
+button {
+    background: #4a9eff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px 5px 5px 0;
+}
+button:hover {
+    background: #3a8eef;
+}
+#objectList {
+    margin-top: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.object-item {
+    background: rgba(74, 158, 255, 0.2);
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.object-item:hover {
+    background: rgba(74, 158, 255, 0.4);
+}
+#info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.mobile-text { display: none; }
+.desktop-text { display: inline; }
+
+@media (max-width: 768px) {
+    #info {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        font-size: 10px;
+        padding: 8px;
+        text-align: center;
+    }
+    .mobile-text { display: inline; }
+    .desktop-text { display: none; }
+}

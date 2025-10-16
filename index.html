@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Interactive Celestial Sphere</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container"></div>
+    <div id="controls">
+        <div id="controlContent">
+            <h3>Interactive Celestial Sphere</h3>
+            <div id="objectList"></div>
+        </div>
+        <div style="display: flex; gap: 5px;">
+            <button onclick="togglePictures()">Hide All Pictures</button>
+            <button onclick="toggleControls()">Hide Panel</button>
+        </div>
+    </div>
+    <div id="info">
+        <span class="desktop-text">Click and drag to look around • Scroll to zoom • Click objects for details<br>Source code: https://github.com/samcn8/celestialsphere<br>Star database from HYG v4.2: https://www.astronexus.com/projects/hyg</span>
+        <span class="mobile-text">Drag to look around • Pinch to zoom • Tap objects for details<br>Source code: https://github.com/samcn8/celestialsphere<br>Star database from HYG v4.2:https://www.astronexus.com/projects/hyg</span>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="icsscript.js"></script>
+</body>
+</html>

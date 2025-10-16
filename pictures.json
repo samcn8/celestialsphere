@@ -1,0 +1,134 @@
+[
+    {
+        "name": "Orion Nebula (M42)",
+        "ra": 5.588,
+        "dec": -5.388,
+        "img": "https://samnelson.dev/pics/OrionNebula.jpg"
+    },
+    {
+        "name": "Ring Nebula (M57)",
+        "ra": 18.893,
+        "dec": 33.0286,
+        "img": "https://samnelson.dev/pics/RingNebula.jpg"
+    },
+    {
+        "name": "Blue Snowball Nebula",
+        "ra": 23.4316,
+        "dec": 42.535,
+        "img": "https://samnelson.dev/pics/SnowballNebula.jpg"
+    },
+    {
+        "name": "Dumbbell Nebula (M27)",
+        "ra": 19.993,
+        "dec": 22.721,
+        "img": "https://samnelson.dev/pics/DumbbellNebula.jpg"
+    },
+    {
+        "name": "Andromeda Galaxy (M31)",
+        "ra": 0.712,
+        "dec": 41.27,
+        "img": "https://samnelson.dev/pics/Andromeda.jpg"
+    },
+    {
+        "name": "Bode's Galaxy (M81) and Cigar Galaxy (M82)",
+        "ra": 9.9286,
+        "dec": 69.3724,
+        "img": "https://samnelson.dev/pics/M81M82.jpg"
+    },
+    {
+        "name": "Hercules Globular Cluster (M13)",
+        "ra": 16.6948,
+        "dec": 36.4599,
+        "img": "https://samnelson.dev/pics/M13.jpg"
+    },
+    {
+        "name": "Great Pegasus Cluster (M15)",
+        "ra": 21.4995,
+        "dec": 12.1670,
+        "img": "https://samnelson.dev/pics/M15.jpg"
+    },
+    {
+        "name": "M92 Globular Cluster",
+        "ra": 17.2854,
+        "dec": 43.1359,
+        "img": "https://samnelson.dev/pics/M92.jpg"
+    },
+    {
+        "name": "Angelfish Cluster (M71)",
+        "ra": 19.8961,
+        "dec": 18.7792,
+        "img": "https://samnelson.dev/pics/M71.jpg"
+    },
+    {
+        "name": "Pleiades",
+        "ra": 3.783,
+        "dec": 24.12,
+        "img": "https://samnelson.dev/pics/Pleiades.jpg"
+    },
+    {
+        "name": "Double Cluster",
+        "ra": 2.3466,
+        "dec": 57.1396,
+        "img": "https://samnelson.dev/pics/DoubleCluster.jpg"
+    },
+    {
+        "name": "Shoe-Buckle Cluster (M35)",
+        "ra": 6.148,
+        "dec": 24.333,
+        "img": "https://samnelson.dev/pics/M35.jpg"
+    },
+    {
+        "name": "Spiral Cluster (M34)",
+        "ra": 2.70,
+        "dec": 42.78,
+        "img": "https://samnelson.dev/pics/M34.jpg"
+    },
+    {
+        "name": "Beehive Cluster (M44)",
+        "ra": 8.6683,
+        "dec": 19.9833,
+        "img": "https://samnelson.dev/pics/BeehiveCluster.jpg"
+    },
+    {
+        "name": "Owl Cluster",
+        "ra": 1.3257,
+        "dec": 58.2908,
+        "img": "https://samnelson.dev/pics/OwlCluster.jpg"
+    },
+    {
+        "name": "Christmas Tree Cluster",
+        "ra": 6.680,
+        "dec": 9.894,
+        "img": "https://samnelson.dev/pics/ChristmasTreeCluster.jpg"
+    },
+    {
+        "name": "Satellite Cluster",
+        "ra": 6.3315,
+        "dec": 4.9267,
+        "img": "https://samnelson.dev/pics/Caldwell50.jpg"
+    },
+    {
+        "name": "Pyramid Cluster (M39)",
+        "ra": 21.53,
+        "dec": 48.43,
+        "img": "https://samnelson.dev/pics/M39.jpg"
+    },
+    {
+        "name": "Albireo",
+        "ra": 19.5120,
+        "dec": 27.9597,
+        "img": "https://samnelson.dev/pics/Albireo.jpg"
+    },
+    {
+        "name": "Mizar and Alcor",
+        "ra": 13.4096,
+        "dec": 54.9567,
+        "img": "https://samnelson.dev/pics/MizarAlcor.jpg"
+    },
+    {
+        "name": "Epsilon Lyrae (Double Double)",
+        "ra": 18.7393,
+        "dec": 39.6414,
+        "img": "https://samnelson.dev/pics/DoubleDouble.jpg"
+    }
+]
