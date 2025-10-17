@@ -14,6 +14,8 @@ let picturesVisible = true; // Track picture visibility state
 // Touch support variables
 let touchStartDistance = 0;
 let touchStartFov = 75;
+let touchStartTime = 0;
+let touchStartPos = { x: 0, y: 0 };
 
 // Pictures array - will be populated from external file
 let pictures = [];
@@ -544,8 +546,11 @@ function onTouchStart(e) {
     if (e.touches.length === 1) {
         // Single touch - rotation
         isDragging = true;
+        hasDragged = false; // Reset drag flag for touch
         const touch = e.touches[0];
         previousMousePosition = { x: touch.clientX, y: touch.clientY };
+        touchStartPos = { x: touch.clientX, y: touch.clientY };
+        touchStartTime = Date.now();
         
         dragStartQuaternion.copy(camera.quaternion);
         dragStartMouseNDC.x = (touch.clientX / window.innerWidth) * 2 - 1;
@@ -564,8 +569,15 @@ function onTouchMove(e) {
     e.preventDefault();
     
     if (e.touches.length === 1 && isDragging) {
-        // Single touch rotation
+        // Mark that user has dragged if they moved more than 10 pixels
         const touch = e.touches[0];
+        const deltaX = Math.abs(touch.clientX - touchStartPos.x);
+        const deltaY = Math.abs(touch.clientY - touchStartPos.y);
+        if (deltaX > 10 || deltaY > 10) {
+            hasDragged = true;
+        }
+        
+        // Single touch rotation
         const currentMouseNDC = new THREE.Vector2(
             (touch.clientX / window.innerWidth) * 2 - 1,
             -(touch.clientY / window.innerHeight) * 2 + 1
@@ -610,12 +622,26 @@ function onTouchMove(e) {
 }
 
 function onTouchEnd(e) {
+    // Check if this was a tap (not a drag and quick touch)
+    if (e.changedTouches.length === 1 && !hasDragged) {
+        const touch = e.changedTouches[0];
+        const touchDuration = Date.now() - touchStartTime;
+        
+        // If touch was quick (less than 300ms) and didn't move much, treat as tap
+        if (touchDuration < 300) {
+            handleTap(touch.clientX, touch.clientY);
+        }
+    }
+    
     if (e.touches.length === 0) {
         isDragging = false;
     } else if (e.touches.length === 1) {
         // Restart single touch tracking
         const touch = e.touches[0];
         previousMousePosition = { x: touch.clientX, y: touch.clientY };
+        touchStartPos = { x: touch.clientX, y: touch.clientY };
+        touchStartTime = Date.now();
+        hasDragged = false;
         dragStartQuaternion.copy(camera.quaternion);
         dragStartMouseNDC.x = (touch.clientX / window.innerWidth) * 2 - 1;
         dragStartMouseNDC.y = -(touch.clientY / window.innerHeight) * 2 + 1;
@@ -650,8 +676,12 @@ function onClick(e) {
         return;
     }
     
-    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    handleTap(e.clientX, e.clientY);
+}
+
+function handleTap(clientX, clientY) {
+    mouse.x = (clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(clientY / window.innerHeight) * 2 + 1;
     
     raycaster.setFromCamera(mouse, camera);
     
@@ -661,8 +691,70 @@ function onClick(e) {
     
     if (intersects.length > 0) {
         const obj = intersects[0].object;
-        alert(`${obj.userData.name}\nRA: ${obj.userData.ra.toFixed(3)}h\nDec: ${obj.userData.dec.toFixed(3)}°`);
+        showCustomDialog(obj.userData.name, obj.userData.ra, obj.userData.dec);
     }
+}
+
+function showCustomDialog(name, ra, dec) {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        padding: 20px;
+        box-sizing: border-box;
+    `;
+
+    const dialog = document.createElement('div');
+    dialog.style.cssText = `
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 400px;
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    `;
+
+    dialog.innerHTML = `
+        <h2 style="margin: 0 0 15px 0; color: #333;">${name}</h2>
+        <p style="margin: 5px 0; color: #666;"><strong>RA:</strong> ${ra.toFixed(3)}h</p>
+        <p style="margin: 5px 0 15px 0; color: #666;"><strong>Dec:</strong> ${dec.toFixed(3)}°</p>
+        <button style="
+            width: 100%;
+            padding: 12px;
+            background: #4a9eff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        ">Close</button>
+    `;
+
+    const closeButton = dialog.querySelector('button');
+    closeButton.onclick = () => document.body.removeChild(overlay);
+    overlay.onclick = (e) => {
+        if (e.target === overlay) document.body.removeChild(overlay);
+    };
+
+    // Support keyboard (Escape key) for desktop
+    const handleKeydown = (e) => {
+        if (e.key === 'Escape') {
+            document.body.removeChild(overlay);
+            document.removeEventListener('keydown', handleKeydown);
+        }
+    };
+    document.addEventListener('keydown', handleKeydown);
+
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
 }
 
 function onWindowResize() {

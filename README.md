@@ -26,4 +26,4 @@ The following is a screenshot of the web GUI:
 The following were used in the making of this script:
  * Vibe coded with Claude Sonnet 4.5
  * Three.js (r128): https://threejs.org/
- * HYG star database (v4.2): https://www.astronexus.com/projects/hyg, which is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en).  Note I removed the Sun entry from this database.
+ * HYG star database (v4.2): https://www.astronexus.com/projects/hyg, which is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.en).  Note I removed stars greater than magnitude 6.6, which are too dim to display, as well as the Sun.
